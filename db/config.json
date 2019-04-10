@@ -1,0 +1,7 @@
+{
+    "connectionLimit": 10,
+    "host": "trap-track.cf9zyau6meiw.us-west-2.rds.amazonaws.com",
+    "user": "node",
+    "password": "password",
+    "database": "traps"
+}
