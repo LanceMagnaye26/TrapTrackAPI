@@ -4,10 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "lint": "standard --fix",
-    "test": "./node_modules/.bin/mocha",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "lint": "standard --fix"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -25,9 +22,7 @@
     "mysql": "^2.16.0",
     "nodemailer": "^5.1.1",
     "nodemon": "^1.18.10",
-    "npm": "^6.8.0",
-    "pg": "^7.9.0",
-    "snyk": "^1.130.0"
+    "npm": "^6.8.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
@@ -43,6 +38,5 @@
     "ignore": [
       "out/*"
     ]
-  },
-  "snyk": true
+  }
 }
