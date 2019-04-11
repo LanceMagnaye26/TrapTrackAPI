@@ -58,15 +58,15 @@ router.post('/create', (req, res) => {
   const buildingID = req.body.Building_ID
   const floorName = req.body.Floor_Name
 
-  const queryString = 'INSERT INTO Floor (Building_ID, floorName) VALUES (?, ?)'
+  const queryString = 'INSERT INTO Floor (Building_ID, Floor_Name) VALUES (?, ?)'
 
   db.query(queryString, [buildingID, floorName], (err, results, field) => {
     if (err) {
       console.log('Failed to insert new building: ' + err)
       res.sendStatus(500)
+    } else {
+      console.log('Inserted a new Building with id: ', results.insertId)
     }
-
-    console.log('Inserted a new Building with id: ', results.insertId)
   })
   res.end()
 })
