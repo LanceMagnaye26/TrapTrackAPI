@@ -76,7 +76,7 @@ router.delete('/delete/:id', (req, res) => {
   console.log('Trying to delete a Building')
 
   const buildingID = req.params.id
-  const queryString = 'DELETE Building WHERE Trap_ID = ?'
+  const queryString = 'DELETE Building WHERE Building_ID = ?'
 
   db.query(queryString, [buildingID], (err, results, field) => {
     if (err) {

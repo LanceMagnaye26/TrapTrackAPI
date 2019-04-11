@@ -3,10 +3,10 @@ var router = express.Router()
 var db = require('../db/db')
 
 router.get('/', (req, res) => {
-  const queryString = 'SELECT * FROM Trap'
+  const queryString = 'SELECT * FROM Floor'
   db.query(queryString, (err, rows, fields) => {
     if (err) {
-      console.log('Failed to query for employees: ' + err)
+      console.log('Failed to query for Buildings: ' + err)
       res.sendStatus(500)
       res.end()
       return
@@ -18,9 +18,9 @@ router.get('/', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-  const trapID = req.params.id
-  const queryString = 'SELECT * FROM Trap where Trap_ID = ?'
-  db.query(queryString, [trapID], (err, rows, fields) => {
+  const floorID = req.params.id
+  const queryString = 'SELECT * FROM Floor where Floor_ID = ?'
+  db.query(queryString, [floorID], (err, rows, fields) => {
     if (err) {
       console.log('Failed to query for employees: ' + err)
       res.sendStatus(500)
@@ -33,55 +33,52 @@ router.get('/:id', (req, res) => {
 })
 
 router.put('/update/:id', (req, res) => {
-  console.log('Trying to update a trap')
+  console.log('Trying to update a Building')
 
-  const trapID = req.params.id
-  const floorID = req.body.Floor_ID
-  const trapType = req.body.Trap_type
-  const baitLeft = req.body.Bait_left
+  const floorID = req.params.id
+  const buildingID = req.body.Building_ID
+  const floorName = req.body.Floor_Name
 
-  const queryString = 'UPDATE Trap SET Floor_ID = ?, Trap_type = ?, Bait_left = ? WHERE employee_id = ?'
+  const queryString = 'UPDATE Building SET Building_ID = ?, Floor_Name = ? WHERE Floor_ID = ?'
 
-  db.query(queryString, [floorID, trapType, baitLeft, trapID], (err, results, field) => {
+  db.query(queryString, [buildingID, floorName, floorID], (err, results, field) => {
     if (err) {
       console.log('Failed to update Trap: ' + err)
       res.sendStatus(500)
     }
-    console.log('Updated Trap with id: ', trapID)
+    console.log('Updated Trap with id: ', floorID)
     res.end()
   })
   res.end()
 })
 
 router.post('/create', (req, res) => {
-  console.log('Trying to create a new user')
+  console.log('Trying to create a new building')
 
-  const floorID = req.body.Floor_ID
-  const trapType = req.body.Trap_type
-  const baitLeft = req.body.Bait_left
+  const buildingID = req.body.Building_ID
+  const floorName = req.body.Floor_Name
 
-  const queryString = 'INSERT INTO Trap (Floor_ID, Trap_type, Time, Bait_left) VALUES (?, ?, CURRENT_TIME(), ?)'
+  const queryString = 'INSERT INTO Floor (Building_ID, floorName) VALUES (?, ?)'
 
-  db.query(queryString, [floorID, trapType, baitLeft], (err, results, field) => {
+  db.query(queryString, [buildingID, floorName], (err, results, field) => {
     if (err) {
-      console.log('Failed to insert new trap: ' + err)
+      console.log('Failed to insert new building: ' + err)
       res.sendStatus(500)
     }
 
-    console.log('Inserted a new trap with id: ', results.insertId)
+    console.log('Inserted a new Building with id: ', results.insertId)
     res.end()
   })
   res.end()
 })
 
 router.delete('/delete/:id', (req, res) => {
-  console.log('Trying to delete a trap')
+  console.log('Trying to delete a Building')
 
-  const trapID = req.params.id
+  const floorID = req.params.id
+  const queryString = 'DELETE Building WHERE Floor_ID = ?'
 
-  const queryString = 'DELETE from Trap WHERE Trap_ID = ?'
-
-  db.query(queryString, [trapID], (err, results, field) => {
+  db.query(queryString, [floorID], (err, results, field) => {
     if (err) {
       console.log('Failed to delete Trap: ' + err)
       res.sendStatus(500)
