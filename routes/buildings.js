@@ -39,7 +39,7 @@ router.put('/update/:id', (req, res) => {
   const buildingName = req.body.Building_name
   const location = req.body.Location
 
-  const queryString = 'UPDATE Trap SET Building_name = ?, Location = ? WHERE Building_ID = ?'
+  const queryString = 'UPDATE Building SET Building_name = ?, Location = ? WHERE Building_ID = ?'
 
   db.query(queryString, [buildingName, location, buildingID], (err, results, field) => {
     if (err) {
@@ -58,11 +58,11 @@ router.post('/create', (req, res) => {
   const buildingName = req.body.Building_name
   const location = req.body.Location
 
-  const queryString = 'INSERT INTO Trap (Building_name, Location) VALUES (?, ?)'
+  const queryString = 'INSERT INTO Building (Building_name, Location) VALUES (?, ?)'
 
   db.query(queryString, [buildingName, location], (err, results, field) => {
     if (err) {
-      console.log('Failed to insert new trap: ' + err)
+      console.log('Failed to insert new building: ' + err)
       res.sendStatus(500)
     }
 
@@ -76,7 +76,7 @@ router.delete('/delete/:id', (req, res) => {
   console.log('Trying to delete a Building')
 
   const buildingID = req.params.id
-  const queryString = 'DELETE from Trap WHERE Trap_ID = ?'
+  const queryString = 'DELETE Building WHERE Trap_ID = ?'
 
   db.query(queryString, [buildingID], (err, results, field) => {
     if (err) {
