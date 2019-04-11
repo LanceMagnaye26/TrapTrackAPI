@@ -40,7 +40,7 @@ router.put('/update/:id', (req, res) => {
   const trapType = req.body.Trap_type
   const baitLeft = req.body.Bait_left
 
-  const queryString = 'UPDATE Trap SET Floor_ID = ?, Trap_type = ?, Bait_left = ? WHERE trap_id = ?'
+  const queryString = 'UPDATE Trap SET Floor_ID = ?, Trap_type = ?, Bait_left = ? WHERE employee_id = ?'
 
   db.query(queryString, [floorID, trapType, baitLeft, trapID], (err, results, field) => {
     if (err) {

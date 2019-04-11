@@ -8,6 +8,8 @@ var fs = require('fs')
 
 var indexRouter = require('./routes/index')
 var trapRouter = require('./routes/traps')
+var buildingRouter = require('./routes/buildings')
+var floorRouter = require('./routes/floors')
 
 var app = express()
 
@@ -38,6 +40,9 @@ app.use((req, res, next) => {
 
 app.use('/api', indexRouter)
 app.use('/api/traps', trapRouter)
+app.use('/api/traps', buildingRouter)
+app.use('/api/floors', floorRouter)
+app.use('/api/buildings', buildingRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
