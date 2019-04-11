@@ -67,7 +67,6 @@ router.post('/create', (req, res) => {
     }
 
     console.log('Inserted a new Building with id: ', results.insertId)
-    res.end()
   })
   res.end()
 })
